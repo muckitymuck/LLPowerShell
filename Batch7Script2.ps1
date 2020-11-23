@@ -14,7 +14,7 @@ Do {
 
         Write-Host""
 
-        $ok=$choice-match'^[123456789x]+$'
+        $ok=$choice-match'^[123456x]+$'
 
         if( -not $ok) {
             Write-Host "Invalid Selection"
