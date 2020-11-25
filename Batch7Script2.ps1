@@ -31,7 +31,7 @@ Do {
             cls
             Write-Host "You chose 1"
             Write-Host "Getting BIOS info:   "
-            Get-WmiObject -Class Win32_BIOS
+            Get-WmiObject -Class Win32_BIOS | Format-List -Property *
             pause
         }
         "2"
@@ -39,7 +39,7 @@ Do {
             cls
             Write-Host "You chose 2"
             Write-Host "Getting Disk Partition info"
-            get-Partition | Out-GridView
+            Get-WmiObject -Class Win32_DiskPartition | Out-GridView
             pause
         }
         "3" 
@@ -47,7 +47,9 @@ Do {
             cls
             Write-Host "You chose 3"
             Write-Host "Writing Services to Services.html"
-            Get-Service | Where-Object {$_.Status -eq "Running"} | ConvertTo-HTML | Out-File Services.html
+            Get-WmiObject -Class Win32_Service | ConvertTo-HTML | Out-File Services.html
+            #Works
+            #Get-Service | Where-Object {$_.Status -eq "Running"} | ConvertTo-HTML | Out-File Services.html
             pause
         }
         "4"
@@ -63,7 +65,9 @@ Do {
             cls
             Write-Host "You chose 5"
             Write-Host "Get Local Computer System Details"
-            Get-ComputerInfo -Property "cs*" | Format-Table -AutoSize
+            Get-WmiObject -Class Win32_ComputerSystem | Format-Table -AutoSize
+            #Works
+            #Get-ComputerInfo -Property "cs*" | Format-Table -AutoSize
             Pause
         }
         "6"
@@ -71,7 +75,9 @@ Do {
             cls
             Write-Host "You chose 6"
             Write-Host "Get Local Share details"
-            Get-SMBShare | Out-GridView
+            Get-WmiObject -Class Win32_Share | Out-Gridview
+            #Works
+            #Get-SMBShare | Out-GridView
             pause
         }
 
